@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+html, body {
+  background-color: #aeb6bf;
+  text-align: center;
+  font-family: 'Roboto'
+}
+
+#survey {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 10px;
+  width: 90%;
+  
+  margin: auto;
+}
+
+.radioInput {
+  display: inline;
+}
+.stt{
+	width: 10%;
+}
+.ques{
+	text-align: left;
+}
+.choose{
+	width: 20%;
+}

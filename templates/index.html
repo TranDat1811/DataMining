@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Deployment Tutorial 1</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div id="survey">
+        <h1>Khảo sát tỉ lệ ly hôn</h1>
+        <h2>Xin vui lòng điền vào dưới đây để tìm hiểu tỉ lệ của bạn để ly hôn.</h2>
+		<h3>Trường hợp 0 - Tôi không đồng ý, 4 - Tôi hoàn toàn đồng ý.</h3>
+		
+		
+          <form action="{{ url_for('predict')}}" method="post">
+		  <table border=1 style="border-collapse: collapse;margin: auto;">
+			{%for i in range(len)%}
+			<tr>
+				<td class="stt">{{i+1}}</td>
+				<td class="ques"><p>{{ questions[i] }}</p></td>
+				<td class="choose">
+					<label><input class="radioInput" type="radio" name="q{{ i }}" value="0" required >0</label>
+					<label><input class="radioInput" type="radio" name="q{{ i }}" value="1" required >1</label>
+					<label><input class="radioInput" type="radio" name="q{{ i }}" value="2" required >2</label>
+					<label><input class="radioInput" type="radio" name="q{{ i }}" value="3" required >3</label>
+					<label><input class="radioInput" type="radio" name="q{{ i }}" value="4" required checked>4</label>
+				</td>
+			</tr> 
+            {%endfor%}
+		  </table>
+              <br>
+              <button type="submit">Dự đoán</button>
+          </form>
+    </div>
+</body>
+</html>
