@@ -116,7 +116,7 @@ def tranform_view():
     data = pd.read_csv(f, names=None, index_col=None)
 
     #lấy những cột và dòng giá trị để dự đoán
-    dt = data.iloc[:, 1:]
+    dt = data.iloc[:, :]
     
     #dự đoán kết quả
     dubao = model.predict(dt)
