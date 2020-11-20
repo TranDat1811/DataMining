@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Chọn file csv</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="{{url_for('home')}}">SD</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{url_for('choose_file')}}">Chọn file csv</a>
+	      </li>
+	      
+	    </ul>
+	  </div>
+	</nav>
+	<!-- End Navbar -->
+
+	<!-- Content -->
+	<div id="survey">
+		<h3> Chọn tập kiểm tra của bạn và sau đó tải về kết quả</h3>
+        <form action="/transform" method="post" enctype="multipart/form-data" style="margin-top: 5vh;">
+            <input style="width: 30%; margin: auto; text-align: center;" type="file" name="data_file" id ='file_csv' class="btn btn-block" accept='.csv' required />
+			<p class="text-center" style="background-color: #d02552;color: #ffffff;width: 20%;margin: 2vh auto; border-radius: 5px;">
+				<label for="file_csv" style="cursor: pointer; width: 100%;" class="btn" >Chọn file</label>
+			</p>
+			{{name_file}}
+            
+            
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+	</div>
+	<!-- End Content -->
+
+	<!-- Footer -->
+    <div class="card text-center" style="position: absolute; bottom: 0; right: 0; left: 0;">
+	  <div class="card-footer text-muted">
+	    Copyright ©
+	    	<script>
+              document.write(new Date().getFullYear())
+          </script>
+	    TranSiDat. 
+	  </div>
+	</div>
+
+<!--End Footer -->
+
+	<!-- Jquery -->
+    <script language="javascript" src="static/js/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script language="javascript" src="static/js/bootstrap.min.js"></script>
+</body>
+</html>

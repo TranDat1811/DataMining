@@ -1,10 +1,17 @@
+#thêm các thư viện
 import numpy as np
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response
 import pickle
+import pandas as pd
 
+
+#khai báo flask
 app = Flask(__name__)
+
+#đọc mô hình đã xây dựng được từ file model/test.py
 model = pickle.load(open('divorceModelComplex.pkl', 'rb'))
 
+#đọc các câu hỏi
 questions = ["Nếu một người trong chúng ta xin lỗi khi cuộc thảo luận của chúng ta xấu đi, cuộc thảo luận sẽ kết thúc.",
              "Tôi biết chúng ta có thể bỏ qua sự khác biệt của mình, ngay cả khi đôi khi mọi thứ trở nên khó khăn.",
              "Khi cần, chúng tôi có thể thảo luận với vợ / chồng tôi ngay từ đầu và sửa lại.",
@@ -62,23 +69,70 @@ questions = ["Nếu một người trong chúng ta xin lỗi khi cuộc thảo l
              "Tôi không ngại nói với vợ / chồng mình về sự kém cỏi của cô ấy / anh ấy."]
 
 
+#gọi file index.html và hiển thị các câu hỏi lên màn hình
 @app.route('/')
 def home():
     return render_template('index.html', len=len(questions), questions=questions)
 
 
-@app.route('/predict', methods=['POST'])
+#nhận yêu cầu và dự đoán kết quả
+@app.route('/predict',methods=['POST'])
 def predict():
-    print(request.form.values)
-    float_features = [int(x) / 4.0 for x in request.form.values()]
-    final_features = np.array([float_features])
-    print(final_features)
-    prediction = model.predict_proba(final_features)
 
-    output = round(prediction[0][1], 4)
-    print(f"Chance for divorce {output * 100}%")
-    return render_template('results.html', prediction_text=f"Tỉ lệ ly hôn là {output * 100}%")
+    #nhận các giá trị đã chọn ở trang index
+    int_features = [int(x) for x in request.form.values()]
+    
+    #chuyển các giá trị nhận được thành một mảng
+    final_features = [np.array(int_features)]
+    
+    #dự đoán mảng giá trị
+    prediction = model.predict(final_features)
+
+    #trả về kết quả dự đoán 0 hoặc 1
+    output = round(prediction[0], 2)
+
+    #trả về kết quả dự đoán dạng chuỗi
+    result = ""
+    if(output==1):
+        result = "Ly hôn"
+    if(output==0):
+        result = "Không ly hôn"
+
+    #trả về kết quả ở trang results
+    return render_template('results.html', prediction_text='{}'.format(result))
 
 
+#hiển thị trang chọn file
+@app.route('/choose_file', methods=['GET'])
+def choose_file():  
+    return render_template('file.html');
+
+#nhận yêu cầu gửi file và trả về kết quả dự đoán
+@app.route('/transform',methods=['POST'])
+def tranform_view():
+    f = request.files['data_file']
+
+    #dùng hàm read_csv để đọc file vừa nhận được
+    data = pd.read_csv(f, names=None, index_col=None)
+
+    #lấy những cột và dòng giá trị để dự đoán
+    dt = data.iloc[:, 1:]
+    
+    #dự đoán kết quả
+    dubao = model.predict(dt)
+
+    #thêm cột label và giá trị đã dự đoán được vào file 
+    dt["Label"] = dubao
+
+    #xuất ra file results.csv
+    dt.to_csv('./static/outputs/results.csv', header=True)
+
+    #mở lại file csv với tên results.csv
+    file = open("./static/outputs/results.csv", "r")
+
+    #trả về file results.csv cho người dùng
+    return Response(file, mimetype="text/csv",headers={"Content-disposition":"attachment; filename=results.csv"})
+
+#hàm main để chạy app
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,18 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 html, body {
-  background-color: #aeb6bf;
+  color: #221E1D;
+  background-color: #fff;
   text-align: center;
-  font-family: 'Roboto'
+  font-family: 'Roboto';
+  scroll-behavior: smooth;
 }
 
 #survey {
-  background-color: #FFFFFF;
+  background-color: #ECEAE0;
   border-radius: 5px;
   padding: 10px;
   width: 90%;
   
-  margin: auto;
+  margin: 2vh auto;
 }
 
 .radioInput {
@@ -20,10 +22,35 @@ html, body {
 }
 .stt{
 	width: 10%;
+  background-color: #64E1C4;
 }
 .ques{
 	text-align: left;
+  
 }
 .choose{
 	width: 20%;
+  background-color: #64E1C4;
+}
+table{
+  margin-top: 10vh;
+}
+.btn_result{
+  background-color: #d02552;
+  color: #ffffff;
+}
+.go_top{
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  background-color: #FF9800;
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: #fff;
+}
+.go_top i{
+  font-size: 2em;
+}
+#file_csv{
+  /* display: none; */
 }
