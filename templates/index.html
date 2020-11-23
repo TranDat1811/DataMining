@@ -33,50 +33,61 @@
 
 <!-- Content -->
     <div id="survey" style="">
-        <h1 style="color: #ED1C24;">Khảo sát ly hôn</h1>
+        <h1 class="tittle">khảo sát tình trạng ly hôn</h1>
           <form action="{{ url_for('predict')}}" method="post">
-		  <table class="table" >
-			{%for i in range(len)%}
-			<tr>
-				<td class="stt">{{i+1}}</td>
-				<td class="ques"><p>{{ questions[i] }}</p></td>
-				<td class="choose">
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios0" value="0" required checked>
-					  <label class="form-check-label" for="exampleRadios0">
-					   	0
-					  </label>
-					</div>
+		  <table class="table table-bordered" >
+		  	<thead class="thead-light">
+			    <tr>
+			      <th scope="col" rowspan="2">#</th>
+			      <th scope="col" rowspan="2">Câu hỏi</th>
+			      <th scope="col">Mức độ</th>
+			    </tr>
+			    
+			</thead>
 
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios1" value="1" required>
-					  <label class="form-check-label" for="exampleRadios1">
-					   	1
-					  </label>
-					</div>
+			<tbody>	
+				{%for i in range(len)%}
+				<tr>
+					<td class="stt">{{i+1}}</td>
+					<td class="ques"><p>{{ questions[i] }}</p></td>
+					<td class="choose">
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios0" value="0" required checked>
+						  <label class="form-check-label" for="exampleRadios0">
+						   	0
+						  </label>
+						</div>
 
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios2" value="2" required>
-					  <label class="form-check-label" for="exampleRadios2">
-					   	2
-					  </label>
-					</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios1" value="1" required>
+						  <label class="form-check-label" for="exampleRadios1">
+						   	1
+						  </label>
+						</div>
 
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios3" value="3" required>
-					  <label class="form-check-label" for="exampleRadios3">
-					   	3
-					  </label>
-					</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios2" value="2" required>
+						  <label class="form-check-label" for="exampleRadios2">
+						   	2
+						  </label>
+						</div>
 
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios4" value="4" required>
-					  <label class="form-check-label" for="exampleRadios4">
-					   	4
-					  </label>
-					</div>
-				</td>
-			</tr> 
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios3" value="3" required>
+						  <label class="form-check-label" for="exampleRadios3">
+						   	3
+						  </label>
+						</div>
+
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="q{{ i }}" id="exampleRadios4" value="4" required>
+						  <label class="form-check-label" for="exampleRadios4">
+						   	4
+						  </label>
+						</div>
+					</td>
+				</tr>
+			</tbody>
             {%endfor%}
 		  </table>
               <br>

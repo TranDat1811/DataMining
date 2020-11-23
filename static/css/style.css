@@ -2,14 +2,27 @@
 
 html, body {
   color: #221E1D;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #ECEAE0;
   text-align: center;
   font-family: 'Roboto';
+  /* font-family: monospace; */
+  font-size: 1rem;
   scroll-behavior: smooth;
 }
-
+.tittle{
+  text-transform: uppercase;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: 3rem;
+  background-image: linear-gradient(to right, #d02552, #ff1744);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 #survey {
-  background-color: #ECEAE0;
+  /* background-color: #ECEAE0; */
+  background-color: #fff;
+
   border-radius: 5px;
   padding: 10px;
   width: 90%;
@@ -22,7 +35,7 @@ html, body {
 }
 .stt{
 	width: 10%;
-  background-color: #64E1C4;
+  /* background-color: #64E1C4; */
 }
 .ques{
 	text-align: left;
@@ -30,7 +43,7 @@ html, body {
 }
 .choose{
 	width: 20%;
-  background-color: #64E1C4;
+  /* background-color: #64E1C4; */
 }
 table{
   margin-top: 10vh;

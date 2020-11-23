@@ -30,20 +30,20 @@
 
 	<!-- Content -->
 	<div id="survey">
-		<h3> Chọn tập kiểm tra của bạn và sau đó tải về kết quả</h3>
-        <form action="/transform" method="post" enctype="multipart/form-data" style="margin-top: 5vh;">
+		<h1 class="tittle"> Chọn tập kiểm tra của bạn và sau đó tải về kết quả</h1>
+        <form action="/transform" method="post" enctype="multipart/form-data" style="margin-top: 10vh;">
             <input style="width: 30%; margin: auto; text-align: center;" type="file" name="data_file" id ='file_csv' class="btn btn-block" accept='.csv' required />
-			<p class="text-center" style="background-color: #d02552;color: #ffffff;width: 20%;margin: 2vh auto; border-radius: 5px;">
+			<!-- <p class="text-center" style="background-color: #d02552;color: #ffffff;width: 20%;margin: 2vh auto; border-radius: 5px;">
 				<label for="file_csv" style="cursor: pointer; width: 100%;" class="btn" >Chọn file</label>
-			</p>
+			</p> -->
 			{{name_file}}
             
             
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
         </form>
 	</div>
 	<!-- End Content -->
-
+	<a class="navbar-brand" href="{{url_for('home')}}"><-- Quay về trang chủ</a>
 	<!-- Footer -->
     <div class="card text-center" style="position: absolute; bottom: 0; right: 0; left: 0;">
 	  <div class="card-footer text-muted">
