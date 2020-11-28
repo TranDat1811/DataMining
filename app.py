@@ -78,7 +78,6 @@ def home():
 #nhận yêu cầu và dự đoán kết quả
 @app.route('/predict',methods=['POST'])
 def predict():
-
     #nhận các giá trị đã chọn ở trang index
     int_features = [int(x) for x in request.form.values()]
     
