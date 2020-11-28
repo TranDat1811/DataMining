@@ -23,7 +23,7 @@ X = data.drop(['Class'], axis=1)
 
 #class
 y = data['Class']
-# print(y.value_counts())
+print(y.value_counts())
 
 
 #ckeck null data
@@ -40,8 +40,6 @@ tong=0
 for train_index, test_index in kf.split(X):
 	X_train, X_test = X.iloc[train_index,], X.iloc[test_index,]
 	y_train, y_test = y.iloc[train_index,], y.iloc[test_index]
-
-	print(X_train)
 	#xây dựng mô hình
 	model = GaussianNB()
 	model.fit(X_train,y_train)
